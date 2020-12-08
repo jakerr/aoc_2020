@@ -1,5 +1,5 @@
-use std::collections::{HashMap, HashSet};
 use crate::record_parser::{RecordFactory, RecordParser};
+use std::collections::{HashMap, HashSet};
 
 struct RuleBookFactory;
 
@@ -28,12 +28,12 @@ impl RecordFactory<BagRuleBook> for RuleBookFactory {
 #[derive(Debug, Default)]
 pub struct BagRules {
     contains: Vec<(String, u8)>,
-    contained_by: Vec<String>
+    contained_by: Vec<String>,
 }
 
 #[derive(Debug, Default)]
 pub struct BagRuleBook {
-    rules: HashMap<String, BagRules>
+    rules: HashMap<String, BagRules>,
 }
 
 impl BagRuleBook {
@@ -47,7 +47,7 @@ impl BagRuleBook {
             self.collect_unique_outer_bags(outer_bag, seen);
         }
     }
-        
+
     pub fn count_outer_bags(&self, bag_name: &str) -> u64 {
         let mut seen = HashSet::new();
         self.collect_unique_outer_bags(bag_name, &mut seen);
